@@ -1,6 +1,6 @@
 # Monitor Host and Containers 
 
-This project install and configure a monitorng stack thats run in containers.
+This project describes how to install monitoring tools via docker and check your host and containers health status.
 
 ## Monitoring tools
 | Tool | Version |Description | 
@@ -36,4 +36,5 @@ stress --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s
 ``
 
 Enjoy :-)
+
 Idan Shemesh
