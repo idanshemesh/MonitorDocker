@@ -1,0 +1,48 @@
+version: '3.5'
+services:
+  grafana:
+    image: grafana/grafana:6.3.3
+    container_name: grafana
+    ports:
+    - 3000:3000
+    volumes:
+        - grafana_data:/var/lib/grafana
+        - ./grafana/provisioning/:/etc/grafana/provisioning/
+    env_file:
+        - ./grafana/config.monitoring
+    depends_on: 
+    - prometheus
+    networks:
+    - sysmon
+  prometheus:
+    image: prom/prometheus:v2.12.0
+    container_name: prometheus
+    ports:
+    - 9090:9090
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+    - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+    - cadvisor
+    networks:
+    - sysmon
+  cadvisor:
+    image: google/cadvisor:v0.33.0
+    container_name: cadvisor
+    ports:
+    - 8080:8080
+    volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+    - sysmon
+
+networks:
+  sysmon:
+    driver: bridge
+
+volumes:
+    grafana_data: {}
