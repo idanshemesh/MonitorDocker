@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install Docker-CE and Docker-Compose
+#Install Docker-CE and Docker-Compose
 
 
 sudo apt-get update
@@ -26,3 +26,4 @@ sudo apt-get install docker-ce \
                     containerd.io \
                     docker-compose \
                     -y
+
