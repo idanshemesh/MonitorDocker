@@ -19,6 +19,14 @@ mkdir -p /opt/docker/
 cd /opt/docker/
 git clone https://github.com/idanshemesh/MonitorDocker.git
 cd /opt/docker/MonitorDocker
+```
+Install Docker (Optional)
+```sh
+chmod +x installDocker.sh
+./installDocker.sh
+```
+Build the monitoring stack
+```sh
 docker-compose up -d
 ```
 ## View your metircs
